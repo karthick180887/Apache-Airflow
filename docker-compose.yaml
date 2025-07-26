@@ -16,7 +16,11 @@
 # under the License.
 #
 
+<<<<<<< HEAD
 # Basic Airflow cluster configuration for CeleryExecutor with Redis and PostgreSQL.
+=======
+# Airflow 3.0.0 cluster configuration for LocalExecutor with PostgreSQL.
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
 #
 # WARNING: This configuration is for local development. Do not use it in a production deployment.
 #
@@ -56,6 +60,7 @@ x-airflow-common:
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+<<<<<<< HEAD
     AIRFLOW__API_AUTH__JWT_SECRET: 'test-key'
     # AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
     # AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
@@ -73,6 +78,20 @@ x-airflow-common:
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
     # The following line can be used to set a custom config file, stored in the local config folder
     AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
+=======
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS: 'false'
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: 'true'
+    AIRFLOW__WEBSERVER__SECRET_KEY: 'a25c62d5-d85d-4a06-9a01-5d67c4b4c5a8'
+    AIRFLOW__API_AUTH__JWT_SECRET: 'a25c62d5-d85d-4a06-9a01-5d67c4b4c5a8'
+    AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    AIRFLOW__CORE__DAGS_FOLDER: '/opt/airflow/dags'
+    # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
+    # for other purpose (development, test and especially production usage) build/extend Airflow image.
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
@@ -81,8 +100,11 @@ x-airflow-common:
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
+<<<<<<< HEAD
     # redis:
     #   condition: service_healthy
+=======
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
     postgres:
       condition: service_healthy
 
@@ -102,6 +124,7 @@ services:
       start_period: 5s
     restart: always
 
+<<<<<<< HEAD
   # redis:
   #   # Redis is limited to 7.2-bookworm due to licencing change
   #   # https://redis.io/blog/redis-adopts-dual-source-available-licensing/
@@ -116,13 +139,19 @@ services:
   #     start_period: 30s
   #   restart: always
 
+=======
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
   airflow-apiserver:
     <<: *airflow-common
     command: api-server
     ports:
       - "8080:8080"
     healthcheck:
+<<<<<<< HEAD
       test: ["CMD", "curl", "--fail", "http://localhost:8080/api/v2/version"]
+=======
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/api/v2/monitor/health"]
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
       interval: 30s
       timeout: 10s
       retries: 5
@@ -163,6 +192,7 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+<<<<<<< HEAD
   # airflow-worker:
   #   <<: *airflow-common
   #   command: celery worker
@@ -188,6 +218,8 @@ services:
   #     airflow-init:
   #       condition: service_completed_successfully
 
+=======
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
   airflow-triggerer:
     <<: *airflow-common
     command: triggerer
@@ -203,10 +235,17 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+<<<<<<< HEAD
   airflow-init:
     <<: *airflow-common
     entrypoint: /bin/bash
     # yamllint disable rule:line-length
+=======
+
+  airflow-init:
+    <<: *airflow-common
+    entrypoint: /bin/bash
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
     command:
       - -c
       - |
@@ -219,6 +258,7 @@ services:
           echo "    See: https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#setting-the-right-airflow-user"
           echo
         fi
+<<<<<<< HEAD
         one_meg=1048576
         mem_available=$$(($$(getconf _PHYS_PAGES) * $$(getconf PAGE_SIZE) / one_meg))
         cpus_available=$$(grep -cE 'cpu[0-9]+' /proc/stat)
@@ -256,6 +296,11 @@ services:
         chown -R "${AIRFLOW_UID}:0" /opts/airflow/{logs,dags,plugins,config}
         exec /entrypoint airflow version
     # yamllint enable rule:line-length
+=======
+        mkdir -p /opt/airflow/{logs,dags,plugins,config}
+        chown -R "${AIRFLOW_UID}:0" /opt/airflow/{logs,dags,plugins,config}
+        exec /entrypoint airflow version
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
     environment:
       <<: *airflow-common-env
       _AIRFLOW_DB_MIGRATE: 'true'
@@ -272,7 +317,10 @@ services:
     environment:
       <<: *airflow-common-env
       CONNECTION_CHECK_MAX_COUNT: "0"
+<<<<<<< HEAD
     # Workaround for entrypoint issue. See: https://github.com/apache/airflow/issues/16252
+=======
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
     command:
       - bash
       - -c
@@ -280,6 +328,7 @@ services:
     depends_on:
       <<: *airflow-common-depends-on
 
+<<<<<<< HEAD
   # You can enable flower by adding "--profile flower" option e.g. docker-compose --profile flower up
   # or by explicitly targeted on the command line e.g. docker-compose up flower.
   # See: https://docs.docker.com/compose/profiles/
@@ -302,5 +351,7 @@ services:
   #     airflow-init:
   #       condition: service_completed_successfully
 
+=======
+>>>>>>> 96c66739cc2c4dbfcca62e50dc090ed850205a51
 volumes:
   postgres-db-volume:

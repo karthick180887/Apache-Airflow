@@ -1,0 +1,6 @@
+{"timestamp":"2025-07-25T01:35:43.763296","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-07-25T01:35:43.766345","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/s3.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-25T01:35:44.117228","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-07-25T01:35:44.164393","level":"info","event":"Connection Retrieved 'aws'","logger":"airflow.hooks.base"}
+{"timestamp":"2025-07-25T01:35:44.164642","level":"info","event":"AWS Connection (conn_id='aws', conn_type='aws') credentials retrieved from login and password.","logger":"airflow.providers.amazon.aws.utils.connection_wrapper.AwsConnectionWrapper"}
+{"timestamp":"2025-07-25T01:35:47.231071","level":"info","event":"Deleted bucket with name: karthick1808-nanacomputers","logger":"airflow.task.operators.airflow.providers.amazon.aws.operators.s3.S3DeleteBucketOperator"}

@@ -1,0 +1,6 @@
+{"timestamp":"2025-07-25T01:40:43.467979","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-07-25T01:40:43.468589","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/s3.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-25T01:40:43.708626","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-07-25T01:40:43.736726","level":"info","event":"Connection Retrieved 'aws'","logger":"airflow.hooks.base"}
+{"timestamp":"2025-07-25T01:40:43.736955","level":"info","event":"AWS Connection (conn_id='aws', conn_type='aws') credentials retrieved from login and password.","logger":"airflow.providers.amazon.aws.utils.connection_wrapper.AwsConnectionWrapper"}
+{"timestamp":"2025-07-25T01:40:45.450255","level":"info","event":"Bucket with name: karthickselvam-demo12398 already exists","logger":"airflow.task.operators.airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator"}

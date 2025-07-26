@@ -1,0 +1,7 @@
+{"timestamp":"2025-07-25T01:40:45.897842","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-07-25T01:40:45.899977","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/s3.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-25T01:40:46.205915","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2025-07-25T01:40:46.264219","level":"info","event":"Connection Retrieved 'aws'","logger":"airflow.hooks.base"}
+{"timestamp":"2025-07-25T01:40:46.264456","level":"info","event":"AWS Connection (conn_id='aws', conn_type='aws') credentials retrieved from login and password.","logger":"airflow.providers.amazon.aws.utils.connection_wrapper.AwsConnectionWrapper"}
+{"timestamp":"2025-07-25T01:40:48.039094","level":"info","event":"Bucket \"karthick1808-nanacomputers\" does not exist","logger":"airflow.task.hooks.airflow.providers.amazon.aws.hooks.s3.S3Hook"}
+{"timestamp":"2025-07-25T01:40:48.039373","level":"info","event":"Bucket with name: karthick1808-nanacomputers doesn't exist","logger":"airflow.task.operators.airflow.providers.amazon.aws.operators.s3.S3DeleteBucketOperator"}
